@@ -52,12 +52,10 @@ class _ImageMessageState extends State<ImageMessage> {
     super.initState();
     _image = widget.imageProviderBuilder != null
         ? CachedNetworkImageProvider(
-            imageUrl: widget.message.uri,
-            httpHeaders: widget.imageHeaders,
+            imageUrl: widget.message.uri
           )
         : CachedNetworkImageProvider(
-            imageUrl: widget.message.uri,
-            httpHeaders: widget.imageHeaders,
+            imageUrl: widget.message.uri
           );
     _size = Size(widget.message.width ?? 0, widget.message.height ?? 0);
   }
