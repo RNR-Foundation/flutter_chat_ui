@@ -4,6 +4,7 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../../models/bubble_rtl_alignment.dart';
 import '../../util.dart';
 import '../state/inherited_chat_theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 /// Renders user's avatar or initials next to a message.
 class UserAvatar extends StatelessWidget {
@@ -50,7 +51,11 @@ class UserAvatar extends StatelessWidget {
                   .userAvatarImageBackgroundColor
               : color,
           backgroundImage: hasImage
-              ? NetworkImage(author.imageUrl!, headers: imageHeaders)
+              ? CachedNetworkImage(
+                  imageUrl: author.imageUrl!,
+                  headers: imageHeaders,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                )
               : null,
           radius: 16,
           child: !hasImage
